@@ -2,9 +2,23 @@ import {NgModule} from '@angular/core';
 import {Routes, RouterModule, PreloadAllModules, UrlSerializer} from '@angular/router';
 import { LoginComponent } from './login/login.component';
 import { AboutComponent } from './about/about.component';
+import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 
 
 const routes: Routes = [
+    // Default route redirect to /courses
+    // Must have pathMatch full to work
+    {
+      path: "",
+      redirectTo: "/courses",
+      pathMatch: "full"
+    },
+    // Courses lazy loading
+    {
+      path: "courses",
+      // Uses function to import courses module then export it using promises
+      loadChildren: () => import('./courses/courses.module').then(m => m.CoursesModule)
+    },
     // Login path to component
     {
       path: "login",
@@ -14,6 +28,11 @@ const routes: Routes = [
     {
       path: "about",
       component: AboutComponent
+    },
+    // 404 Component -- COMES LAST FOR FALL THROUGH!!
+    {
+      path: "**", // Anything we haven't mapped, must be at end so fall through occurs!
+      component: PageNotFoundComponent
     }
 ];
 

@@ -4,7 +4,7 @@
 
     <div class="toolbar-tools">
 
-      <a class="menu-item" mat-button routerLink="/" routerLinkActive="menu-item-active">
+      <a class="menu-item" mat-button routerLink="/courses" routerLinkActive="menu-item-active">
         <span>Courses</span>
       </a>
 
@@ -37,13 +37,11 @@
 
     </ng-container>
 
-
-
   </mat-toolbar>
 
   <messages></messages>
 
-  <loading></loading>
+  <loading [detectRoutingOngoing]="true"></loading>
 
   <router-outlet></router-outlet>
 

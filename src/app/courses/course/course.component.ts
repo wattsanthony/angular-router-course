@@ -1,5 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {Course} from '../model/course';
+import { ActivatedRoute } from '@angular/router';
 
 
 @Component({
@@ -7,23 +8,22 @@ import {Course} from '../model/course';
     templateUrl: './course.component.html',
     styleUrls: ['./course.component.css']
 })
-export class CourseComponent implements OnInit {
+export class CourseComponent {
 
     course: Course;
 
     couponCode: string;
 
-
-    constructor() {
-
-
-    }
-
-    ngOnInit() {
-
+    // Constructor
+    constructor(private route:ActivatedRoute) {
 
     }
 
+    // Initialise
+    ngOnInit(){
+        // Get snapshot of route and data course
+        this.course = this.route.snapshot.data["course"];
+    }
 
 }
 
