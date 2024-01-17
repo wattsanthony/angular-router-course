@@ -10,7 +10,7 @@ import {AuthStore} from '../services/auth.store';
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss']
 })
-export class LoginComponent implements OnInit {
+export class LoginComponent {
 
   form: UntypedFormGroup;
 
@@ -36,7 +36,9 @@ export class LoginComponent implements OnInit {
 
     this.auth.login(val.email, val.password)
         .subscribe(
-            () => {},
+            () => {
+              this.router.navigateByUrl('/courses');
+            },
             err => {
                 alert("Login failed!");
             }

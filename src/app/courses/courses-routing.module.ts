@@ -7,6 +7,8 @@ import { LessonDetailComponent } from './lesson/lesson-detail.component';
 import { LessonsListComponent } from './lessons-list/lessons-list.component';
 import { LessonsResolver } from './services/lessons.resolver';
 import { LessonsDetailResolver } from './services/lessons-detail.resolver';
+import { AuthGuard } from '../services/auth.guard';
+import { ConfirmExitGuard } from '../services/confirm-exit.guard';
 
 // Routing for the courses module section
 const routes: Routes = [
@@ -18,6 +20,9 @@ const routes: Routes = [
   // Course route
   {
     path: ":courseUrl", // Path variable
+    canActivate: [AuthGuard], // Makes sure this is satisfied before routing
+    canActivateChild: [AuthGuard], // Makes sure also works for child routes
+    canDeactivate: [ConfirmExitGuard], // Makes sure we want to exit this route
     component: CourseComponent,
     // Children of route
     children: [
@@ -54,7 +59,9 @@ const routes: Routes = [
   providers: [
     CourseResolver, // Service that resolves courses
     LessonsResolver, // Service that resolves lessons
-    LessonsDetailResolver // Service that resolves lesson detail
+    LessonsDetailResolver, // Service that resolves lesson detail
+    AuthGuard, // Authentication guard service
+    ConfirmExitGuard // Confirm exit route guard service
   ]
 })
 export class CoursesRoutingModule {

@@ -25,6 +25,11 @@ export class CourseComponent {
         this.course = this.route.snapshot.data["course"];
     }
 
+    // Confirm on exit route funct
+    confirmExit(){
+        return confirm(`Are you sure you want to exit ${this.course.description}?`);
+    }
+
 }
 
 
