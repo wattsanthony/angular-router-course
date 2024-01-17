@@ -23,6 +23,9 @@ export class CourseComponent {
     ngOnInit(){
         // Get snapshot of route and data course
         this.course = this.route.snapshot.data["course"];
+
+        // Get the coupon code from url
+        this.couponCode = this.route.snapshot.queryParamMap.get("couponCode");
     }
 
     // Confirm on exit route funct

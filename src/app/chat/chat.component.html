@@ -8,7 +8,9 @@
 
     <button mat-raised-button color="primary">Send Message</button>
 
-    <button mat-raised-button>Close Chat</button>
+    <!-- Fix for bug where button won't work for secondary outlets -->
+    <!-- Is mat-raised-button to appear correctly but MUST be 'a' tag to work!-->
+    <a mat-raised-button (click)="closeChatViaParent()">Close Chat</a>
 
   </div>
 
